@@ -10,6 +10,8 @@ function Pomodoro() {
   const initialDurationType = "Focusing";
   const initialIsBreak = "false";
   const initialDurationLength = 25;
+  const initialDisableStop = true;
+  const initialDisableDuration = false;
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [focusDuration, setFocusDuration] = useState(initialFocusDuration);
   const [breakDuration, setBreakDuration] = useState(initialBreakDuration);
@@ -18,6 +20,8 @@ function Pomodoro() {
   const [isBreak, setIsBreak] = useState(initialIsBreak);
   const [durationType, setDurationType] = useState(initialDurationType);
   const [durationLength, setDurationLength] = useState(initialDurationLength);
+  const [disableStop, setDisableStop] = useState(initialDisableStop);
+  const [disableDuration, setDisableDuration] = useState(initialDisableDuration);
  
   useInterval(
     () => {
@@ -45,9 +49,13 @@ function Pomodoro() {
   function playPause() {
     setIsTimerRunning((prevState) => !prevState);
     setIsSession((isSession) => isSession = true);
+    setDisableStop((disableStop) => disableStop = false);
+    setDisableDuration((disableDuration) => disableDuration = true);
   };
 
   function stopSession() {
+    setDisableStop(initialDisableStop);
+    setDisableDuration(initialDisableDuration);
     setIsTimerRunning((isTimerRunning) => isTimerRunning = false);
     setIsSession((isSession) => isSession = false);
     setFocusDuration(initialFocusDuration);
@@ -88,11 +96,11 @@ function Pomodoro() {
     <div className="pomodoro">
       <div className="row">
         <div className="col">
-          <Duration label="Focus" duration={focusDuration} durationChange={incrementFocus}  />
+          <Duration label="Focus" duration={focusDuration} durationChange={incrementFocus} disableDuration={disableDuration}  />
         </div>
         <div className="col">
           <div className="float-right">
-            <Duration label="Break" duration={breakDuration} durationChange={incrementBreak}  />
+            <Duration label="Break" duration={breakDuration} durationChange={incrementBreak} disableDuration={disableDuration}  />
           </div>
         </div>
       </div>
@@ -124,6 +132,7 @@ function Pomodoro() {
               className="btn btn-secondary"
               title="Stop the session"
               onClick={stopSession}
+              disabled={disableStop}
             >
               <span className="oi oi-media-stop" />
             </button>

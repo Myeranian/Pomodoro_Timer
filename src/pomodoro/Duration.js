@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { minutesToDuration } from "../utils/duration";
 
 function Duration(props) {
-  const {label, duration, durationChange} = props;
+  const {label, duration, durationChange, disableDuration } = props;
   return (
     <div className="input-group input-group-lg mb-2">
             <span className="input-group-text" data-testid={`duration-${label.toLowerCase()}`} id={`${label.toLowerCase()}-duration`}>
@@ -17,6 +17,7 @@ function Duration(props) {
                 data-testid={`decrease-${label.toLowerCase()}`}
                 value="decrease"
                 onClick={durationChange}
+                disabled={disableDuration}
               >
                 <span className="oi oi-minus" />
               </button>
@@ -27,6 +28,7 @@ function Duration(props) {
                 data-testid={`increase-${label.toLowerCase()}`}
                 value="increase"
                 onClick={durationChange}
+                disabled={disableDuration}
               >
                 <span className="oi oi-plus" />
               </button>
