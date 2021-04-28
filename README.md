@@ -7,10 +7,19 @@
 ---
 
 ### Screenshots
-
+#### To start a session, user selects study and break durations
 ![Pomodoro screenshot 1](/screenshots/pomodoro1.png)
 
+---
+
+
+#### A countdown with progress bar runs for the study duration
 ![Pomodoro screenshot 2](/screenshots/pomodoro2.png)
+
+---
+
+#### Next, a countdown with progress bar runs for the break duration
+![Pomodoro screenshot 3](/screenshots/pomodoro3.png)
 
 ---
 
